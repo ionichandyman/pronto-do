@@ -10,6 +10,8 @@ import { ProjectsNotesPage } from '../pages/projects-notes/projects-notes';
 import { AddProjectsPage } from '../pages/add-projects/add-projects';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { ProjectsPage } from '../pages/projects/projects';
+import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ProjectsPage } from '../pages/projects/projects';
     AddProjectsPage,
     ProjectsNotesPage,
     ProjectsPage,
-    SignInPage
+    SignInPage,
+    EditProjectsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { ProjectsPage } from '../pages/projects/projects';
     AddProjectsPage,
     ProjectsNotesPage,
     ProjectsPage,
-    SignInPage
+    SignInPage,
+    EditProjectsPage
   ],
   providers: [
     StatusBar,

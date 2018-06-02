@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProjectsNotesPage} from '../projects-notes/projects-notes';
 import {AddProjectsPage} from '../add-projects/add-projects';
+import {EditProjectsPage} from '../edit-projects/edit-projects';
+
 import * as firebase from 'firebase';
 
 /**
@@ -29,6 +31,19 @@ export class ProjectsPage {
   }
  ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
+  }
+  addProjects(){
+    this.navCtrl.push(AddProjectsPage);
+  }
+  goToChats(){
+    alert('go to chats');
+  }
+  delete(selectedItem){
+    this.ref.child(selectedItem).remove();
+  }
+  edit(selectedItem){
+    
+    this.navCtrl.push(EditProjectsPage,{selectedKey:selectedItem});
   }
 }
 export const snapshotToArray = snapshot => {

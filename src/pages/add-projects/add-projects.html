@@ -5,14 +5,24 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>AddProjects</ion-title>
+  <ion-navbar hideBackButton=false>
+    <ion-title>Enter Project Name</ion-title>
+    <ion-buttons end>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="addProjectData()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating> Enter Project Name</ion-label>
+        <ion-input type="text" [(ngModel)]="data.projectName" name="projectName" required="*"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round color="secondary" type="submit">Enter</button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
