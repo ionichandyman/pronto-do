@@ -18,13 +18,12 @@
     <ion-item-sliding *ngFor="let proj of projects">
       <ion-item (click)="goToChats()">
           {{proj.projectName}}
-          <ion-icon name="md-open" item-end (click)="goToChats()"></ion-icon>
+          <ion-icon name="md-open" item-end (click)="goToProject(proj.key,proj.projectName)"></ion-icon>
       </ion-item>
       <ion-item-options side="right">
           <button ion-button expandable (click)="edit(proj.key)">Edit</button>
           <button ion-button color="danger" expandable (click)="delete(proj.key)">Delete</button>
-          
-      </ion-item-options>
+       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 </ion-content>

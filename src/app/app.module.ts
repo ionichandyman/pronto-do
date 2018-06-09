@@ -35,7 +35,8 @@ import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
     ProjectsNotesPage,
     ProjectsPage,
     SignInPage,
-    EditProjectsPage
+    EditProjectsPage,
+    ProjectsNotesPage
   ],
   providers: [
     StatusBar,

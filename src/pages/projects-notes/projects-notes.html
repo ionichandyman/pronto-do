@@ -5,14 +5,28 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>ProjectsNotes</ion-title>
+    <ion-title>Project Notes</ion-title>
   </ion-navbar>
-
+  <ion-navbar>
+    <ion-title>{{projectName}}</ion-title>
+  </ion-navbar>
 </ion-header>
-
-
 <ion-content padding>
+  <ion-list no-lines>
+      <ion-item *ngFor="let proj of projectTasks">
+          <div *ngIf=" proj.type=='logentry' " class="inputLocation">
+            <ion-item class="logentry">
+                {{proj.projectNotes}} {{proj.joinDate}}
+            </ion-item>
+          </div>
+          <div *ngIf=" proj.type!='logentry' " >
+            <ion-item>
+              {{proj.projectNotes}}
+            </ion-item>
+          </div>
 
+          
+        </ion-item>
+  </ion-list>
 </ion-content>

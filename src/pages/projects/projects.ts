@@ -22,12 +22,14 @@ export class ProjectsPage {
   data = {username:""};
   projects=[];
   ref = firebase.database().ref('projects/');
+  userId:'';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.ref.on('value',resp=>{
       this.projects = [];
       this.projects = snapshotToArray(resp);
-    })  
+    });
+
   }
  ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
@@ -37,6 +39,10 @@ export class ProjectsPage {
   }
   goToChats(){
     alert('go to chats');
+  }
+  goToProject(key,text){
+    var me=this;
+    this.navCtrl.push(ProjectsNotesPage,{projectKey : key,userId : me.userId,projectName : text});
   }
   delete(selectedItem){
     this.ref.child(selectedItem).remove();
