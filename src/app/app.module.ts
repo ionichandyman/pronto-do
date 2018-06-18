@@ -11,6 +11,8 @@ import { AddProjectsPage } from '../pages/add-projects/add-projects';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { ProjectsPage } from '../pages/projects/projects';
 import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
+import {AddNotesPage} from '../pages/add-notes/add-notes';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
     ProjectsNotesPage,
     ProjectsPage,
     SignInPage,
-    EditProjectsPage
+    EditProjectsPage,
+    AddNotesPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
     ProjectsPage,
     SignInPage,
     EditProjectsPage,
-    ProjectsNotesPage
+    ProjectsNotesPage,
+    AddNotesPage
   ],
   providers: [
     StatusBar,

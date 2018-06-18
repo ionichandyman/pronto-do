@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { ProjectNote } from '../../app/projectnotes';
+import { AddNotesPage } from '../add-notes/add-notes';
 
 /**
  * Generated class for the ProjectsNotesPage page.
@@ -18,7 +19,6 @@ import { ProjectNote } from '../../app/projectnotes';
 
 export class ProjectsNotesPage {
   projectKey:'';
-  projectCloudNotes;
   userId :'';
   ref;
   projectName:'';
@@ -38,6 +38,9 @@ export class ProjectsNotesPage {
       this.projectTasks = snapshotToArray(resp);
       this.projectTasks.reverse();
     });
+  }
+ addTask(){
+  this.navCtrl.push(AddNotesPage,{projectKey:this.projectKey,projectName:this.projectName});
   }
  addNotes(){
    var me=this;
