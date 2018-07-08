@@ -37,9 +37,7 @@ export class ProjectsPage {
   addProjects(){
     this.navCtrl.push(AddProjectsPage);
   }
-  goToChats(){
-    alert('go to chats');
-  }
+  
   goToProject(key,text){
     var me=this;
     this.navCtrl.push(ProjectsNotesPage,{projectKey : key,userId : me.userId,projectName : text});

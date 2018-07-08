@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let proj of projects">
-      <ion-item (click)="goToChats()">
+      <ion-item>
           {{proj.projectName}}
           <ion-icon name="md-open" item-end (click)="goToProject(proj.key,proj.projectName)"></ion-icon>
       </ion-item>

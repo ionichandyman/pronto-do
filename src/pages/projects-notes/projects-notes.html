@@ -21,18 +21,23 @@
 <ion-content padding>
   <ion-list no-lines>
       <ion-item *ngFor="let proj of projectTasks">
-          <div *ngIf=" proj.type=='logentry' " class="inputLocation">
-            <ion-item class="logentry">
-                {{proj.projectNotes}} {{proj.joinDate}}
-            </ion-item>
-          </div>
-          <div *ngIf=" proj.type!='logentry' " >
-            <ion-item>
-              {{proj.projectNotes}}
-            </ion-item>
-          </div>
-
+        <ion-card *ngIf="proj.type!='logentry'">
+          <ion-card-header>
+          {{proj.projectNotes}}
+          </ion-card-header>
+          <ion-card-content>
+           {{proj.messages}}
+           <br>
+           assigned to  : {{proj.loginId}}
+          </ion-card-content>
           
+        </ion-card>
+     
         </ion-item>
   </ion-list>
 </ion-content>
+
+
+
+
+

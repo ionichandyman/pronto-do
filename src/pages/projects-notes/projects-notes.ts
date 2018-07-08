@@ -33,7 +33,7 @@ export class ProjectsNotesPage {
     this.ref = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/');
     this.refRead = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/').orderByChild('joinDate');
 
-    this.addNotes();
+    //this.addNotes();
     this.refRead.on('value',resp=>{
       this.projectTasks = snapshotToArray(resp);
       this.projectTasks.reverse();
