@@ -29,11 +29,9 @@ export class ProjectsNotesPage {
     this.projectKey = navParams.get("projectKey");
     this.userId = navParams.get("userId");
     this.projectName = navParams.get("projectName");
-
     this.ref = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/');
     this.refRead = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/').orderByChild('joinDate');
-
-    //this.addNotes();
+   //this.addNotes();
     this.refRead.on('value',resp=>{
       this.projectTasks = snapshotToArray(resp);
       this.projectTasks.reverse();
@@ -52,6 +50,32 @@ export class ProjectsNotesPage {
     loginId : "uncajy",
     joinDate : Date()
   });
+ }
+ close(selectedItem){
+  
+  let dataForEdit =this.ref.child(selectedItem);
+  dataForEdit.update({
+    "status" : "C"
+  }).then(function(){
+    alert("Successfully updated")
+  }).catch(function(error){
+    alert("Unable to update")
+  })
+ }
+ reOpen(selectedItem){
+  let dataForOpen =  this.ref.child(selectedItem);
+  dataForOpen.update({
+    "status" : "P",
+    "joinDate" : Date()
+  }).then(function(){
+    alert("Successfully updated")
+  }).catch(function(error){
+    alert("Unable to update")
+  })
+ }
+ delete(selectedItem){
+  this.ref.child(selectedItem).remove();
+
  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsNotesPage');

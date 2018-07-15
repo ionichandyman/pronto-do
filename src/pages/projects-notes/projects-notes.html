@@ -21,23 +21,54 @@
 <ion-content padding>
   <ion-list no-lines>
       <ion-item *ngFor="let proj of projectTasks">
-        <ion-card *ngIf="proj.type!='logentry'">
+        <ion-card *ngIf="proj.type!='logentry'" class="ion-card" >
           <ion-card-header>
-          {{proj.projectNotes}}
+            {{proj.projectNotes}}
           </ion-card-header>
           <ion-card-content>
-           {{proj.messages}}
-           <br>
-           assigned to  : {{proj.loginId}}
+            <b>Details :</b><br>
+            {{proj.messages}} <br>
+            <b>Assigned to</b> : <br>
+            {{proj.taskOwner}}<br>
+            <b>Reported by</b> : <br>
+            {{proj.createdBy}}
+            <br>
+            <b>Status : </b> <br>
+             {{proj.status=='P' ? 'Open' : 'Completed'}}
           </ion-card-content>
           
+          <ion-row>
+            <ion-col>&nbsp;</ion-col>
+            <ion-col>
+                <button ion-button color="danger" (click)="delete(proj.key)">Delete</button>
+            </ion-col>
+            <ion-col>
+                <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)">Re-Open</button>
+                <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)">Complete</button>
+            </ion-col>
+            
+          </ion-row>
         </ion-card>
-     
-        </ion-item>
+      </ion-item>
   </ion-list>
 </ion-content>
 
-
-
+<!--ion-list>
+    <ion-item>
+      <ion-label floating>Task Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="projectNotes" name="projectNotes" required="*"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Description:</ion-label>
+      <ion-input type="text" [(ngModel)]="messages" name="messages" required="*"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Assignee:</ion-label>
+      <ion-input type="text" [(ngModel)]="taskOwner" name="taskOwner" required="*"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full round color="secondary" type="submit">Enter</button>
+    </ion-item>
+  </ion-list-->
 
 

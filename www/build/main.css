@@ -25683,3 +25683,7 @@ page-projects-notes .logentry {
   font-size: 11px;
   padding: 2px;
 }
+
+page-projects-notes .ion-card {
+  background-color: #fcfcd8 !important;
+}

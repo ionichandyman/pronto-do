@@ -38,7 +38,6 @@ export class AddNotesPage {
     console.log('ionViewDidLoad AddNotesPage');
   }
   addProjectNotes(){
-    
     var me=this;
     let newData = this.ref.push();
     newData.set({
@@ -46,7 +45,9 @@ export class AddNotesPage {
       messages : this.messages,
       type : 'notes',
       loginId :this.taskOwner,
-      joinDate : Date()
+      joinDate : Date(),
+      createdBy:'SYSTEM',
+      status : 'P'
     });
     this.navCtrl.pop();
   }
