@@ -28,6 +28,8 @@ export class AddNotesPage {
   loginId :'';
   joinDate:'';
   ref;
+  refUserTask;
+  newTask;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.projectKey = navParams.get("projectKey");
@@ -40,15 +42,29 @@ export class AddNotesPage {
   addProjectNotes(){
     var me=this;
     let newData = this.ref.push();
+    this.refUserTask =  firebase.database().ref('user/' + this.taskOwner).child('tasks');
+    
+
     newData.set({
       projectNotes :this.projectNotes,
       messages : this.messages,
       type : 'notes',
-      loginId :this.taskOwner,
+      taskOwner :this.taskOwner,
+      taskOwnerId : this.taskOwner,
       joinDate : Date(),
       createdBy:'SYSTEM',
       status : 'P'
     });
+    this.refUserTask.child(newData.getKey()).set({
+      projectNotes : this.projectNotes,
+      messages : this.messages,
+      type : 'notes',
+      taskOwner : this.taskOwner,
+      taskOwnerId : this.taskOwner,
+      createDate : Date(),
+      status : 'P'
+    });
+
     this.navCtrl.pop();
   }
 }

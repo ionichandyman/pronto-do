@@ -25678,6 +25678,14 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-home .scroll-content {
+  overflow-y: hidden;
+}
+
+page-projects .scroll-content {
+  overflow-y: scroll;
+}
+
 page-projects-notes .logentry {
   color: gray;
   font-size: 11px;
@@ -25686,4 +25694,10 @@ page-projects-notes .logentry {
 
 page-projects-notes .ion-card {
   background-color: #fcfcd8 !important;
+}
+
+page-projects-notes .scroll-content {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
 }

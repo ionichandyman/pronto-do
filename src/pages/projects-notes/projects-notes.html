@@ -38,13 +38,12 @@
           </ion-card-content>
           
           <ion-row>
-            <ion-col>&nbsp;</ion-col>
             <ion-col>
-                <button ion-button color="danger" (click)="delete(proj.key)">Delete</button>
+                <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
             </ion-col>
             <ion-col>
-                <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)">Re-Open</button>
-                <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)">Complete</button>
+                <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
+                <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>
             </ion-col>
             
           </ion-row>

@@ -41,24 +41,36 @@ var AddNotesPage = /** @class */ (function () {
     AddNotesPage.prototype.addProjectNotes = function () {
         var me = this;
         var newData = this.ref.push();
+        this.refUserTask = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('user/' + this.taskOwner).child('tasks');
         newData.set({
             projectNotes: this.projectNotes,
             messages: this.messages,
             type: 'notes',
-            loginId: this.taskOwner,
+            taskOwner: this.taskOwner,
+            taskOwnerId: this.taskOwner,
             joinDate: Date(),
             createdBy: 'SYSTEM',
+            status: 'P'
+        });
+        this.refUserTask.child(newData.getKey()).set({
+            projectNotes: this.projectNotes,
+            messages: this.messages,
+            type: 'notes',
+            taskOwner: this.taskOwner,
+            taskOwnerId: this.taskOwner,
+            createDate: Date(),
             status: 'P'
         });
         this.navCtrl.pop();
     };
     AddNotesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-notes',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\add-notes\add-notes.html"*/'<!--\n\n  Generated template for the AddNotesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{projectName}}</ion-title>\n\n  </ion-navbar>\n\n  <ion-navbar>\n\n    <ion-title>add-notes</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <form (ngSubmit)="addProjectNotes()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating>Task Name:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectNotes" name="projectNotes" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label floating>Description:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="messages" name="messages" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label floating>Assignee:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="taskOwner" name="taskOwner" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n \n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\add-notes\add-notes.html"*/,
+            selector: 'page-add-notes',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\add-notes\add-notes.html"*/'<!--\n\n  Generated template for the AddNotesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{projectName}}</ion-title>\n\n  </ion-navbar>\n\n  <ion-navbar>\n\n    <ion-title>add-notes</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <form (ngSubmit)="addProjectNotes()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating>Task Name:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectNotes" name="projectNotes" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label floating>Description:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="messages" name="messages" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label floating>Assignee:</ion-label>\n\n              <ion-input type="text" [(ngModel)]="taskOwner" name="taskOwner" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n \n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\add-notes\add-notes.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
     ], AddNotesPage);
     return AddNotesPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=add-notes.js.map
@@ -111,7 +123,7 @@ var AddProjectsPage = /** @class */ (function () {
     };
     AddProjectsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-projects',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\add-projects\add-projects.html"*/'<!--\n\n  Generated template for the AddProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Enter Project Name</ion-title>\n\n    <ion-buttons end>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form (ngSubmit)="addProjectData()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating> Enter Project Name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.projectName" name="projectName" required="*"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\add-projects\add-projects.html"*/,
+            selector: 'page-add-projects',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\add-projects\add-projects.html"*/'<!--\n\n  Generated template for the AddProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Enter Project Name</ion-title>\n\n    <ion-buttons end>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form (ngSubmit)="addProjectData()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating> Enter Project Name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.projectName" name="projectName" required="*"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\add-projects\add-projects.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], AddProjectsPage);
@@ -177,7 +189,7 @@ var EditProjectsPage = /** @class */ (function () {
     };
     EditProjectsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-edit-projects',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\edit-projects\edit-projects.html"*/'<!--\n\n  Generated template for the EditProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>edit-projects</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n    <form (ngSubmit)="submitChange()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating> Enter Project Name</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectData.projectName" name="projectName" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n  <ion-item>\n\n \n\n  </ion-item>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\edit-projects\edit-projects.html"*/,
+            selector: 'page-edit-projects',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\edit-projects\edit-projects.html"*/'<!--\n\n  Generated template for the EditProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>edit-projects</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n    <form (ngSubmit)="submitChange()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating> Enter Project Name</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectData.projectName" name="projectName" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n  <ion-item>\n\n \n\n  </ion-item>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\edit-projects\edit-projects.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], EditProjectsPage);
@@ -277,7 +289,7 @@ var ProjectsNotesPage = /** @class */ (function () {
     };
     ProjectsNotesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-projects-notes',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\projects-notes\projects-notes.html"*/'<!--\n\n  Generated template for the ProjectsNotesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Project Notes</ion-title>\n\n  </ion-navbar>\n\n  <ion-navbar>\n\n    <ion-title>{{projectName}}</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addTask()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  \n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list no-lines>\n\n      <ion-item *ngFor="let proj of projectTasks">\n\n        <ion-card *ngIf="proj.type!=\'logentry\'" class="ion-card" >\n\n          <ion-card-header>\n\n            {{proj.projectNotes}}\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            <b>Details :</b><br>\n\n            {{proj.messages}} <br>\n\n            <b>Assigned to</b> : <br>\n\n            {{proj.taskOwner}}<br>\n\n            <b>Reported by</b> : <br>\n\n            {{proj.createdBy}}\n\n            <br>\n\n            <b>Status : </b> <br>\n\n             {{proj.status==\'P\' ? \'Open\' : \'Completed\'}}\n\n          </ion-card-content>\n\n          \n\n          <ion-row>\n\n            <ion-col>&nbsp;</ion-col>\n\n            <ion-col>\n\n                <button ion-button color="danger" (click)="delete(proj.key)">Delete</button>\n\n            </ion-col>\n\n            <ion-col>\n\n                <button *ngIf="proj.status!=\'P\'"  ion-button color="default" (click)="reOpen(proj.key)">Re-Open</button>\n\n                <button *ngIf="proj.status==\'P\'" ion-button color="secondary" (click)="close(proj.key)">Complete</button>\n\n            </ion-col>\n\n            \n\n          </ion-row>\n\n        </ion-card>\n\n      </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<!--ion-list>\n\n    <ion-item>\n\n      <ion-label floating>Task Name:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="projectNotes" name="projectNotes" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label floating>Description:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="messages" name="messages" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label floating>Assignee:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="taskOwner" name="taskOwner" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <button ion-button full round color="secondary" type="submit">Enter</button>\n\n    </ion-item>\n\n  </ion-list-->\n\n\n\n\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\projects-notes\projects-notes.html"*/,
+            selector: 'page-projects-notes',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\projects-notes\projects-notes.html"*/'<!--\n\n  Generated template for the ProjectsNotesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Project Notes</ion-title>\n\n  </ion-navbar>\n\n  <ion-navbar>\n\n    <ion-title>{{projectName}}</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addTask()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  \n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list no-lines>\n\n      <ion-item *ngFor="let proj of projectTasks">\n\n        <ion-card *ngIf="proj.type!=\'logentry\'" class="ion-card" >\n\n          <ion-card-header>\n\n            {{proj.projectNotes}}\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            <b>Details :</b><br>\n\n            {{proj.messages}} <br>\n\n            <b>Assigned to</b> : <br>\n\n            {{proj.taskOwner}}<br>\n\n            <b>Reported by</b> : <br>\n\n            {{proj.createdBy}}\n\n            <br>\n\n            <b>Status : </b> <br>\n\n             {{proj.status==\'P\' ? \'Open\' : \'Completed\'}}\n\n          </ion-card-content>\n\n          \n\n          <ion-row>\n\n            <ion-col>\n\n                <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>\n\n            </ion-col>\n\n            <ion-col>\n\n                <button *ngIf="proj.status!=\'P\'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>\n\n                <button *ngIf="proj.status==\'P\'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>\n\n            </ion-col>\n\n            \n\n          </ion-row>\n\n        </ion-card>\n\n      </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<!--ion-list>\n\n    <ion-item>\n\n      <ion-label floating>Task Name:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="projectNotes" name="projectNotes" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label floating>Description:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="messages" name="messages" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label floating>Assignee:</ion-label>\n\n      <ion-input type="text" [(ngModel)]="taskOwner" name="taskOwner" required="*"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <button ion-button full round color="secondary" type="submit">Enter</button>\n\n    </ion-item>\n\n  </ion-list-->\n\n\n\n\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\projects-notes\projects-notes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], ProjectsNotesPage);
@@ -362,7 +374,7 @@ var ProjectsPage = /** @class */ (function () {
     };
     ProjectsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-projects',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\projects\projects.html"*/'<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Projects</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button icon-only (click)="signOut()">\n\n        Leave\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addProjects()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor="let proj of projects">\n\n      <ion-item>\n\n          {{proj.projectName}}\n\n          <ion-icon name="md-open" item-end (click)="goToProject(proj.key,proj.projectName)"></ion-icon>\n\n      </ion-item>\n\n      <ion-item-options side="right">\n\n          <button ion-button expandable (click)="edit(proj.key)">Edit</button>\n\n          <button ion-button color="danger" expandable (click)="delete(proj.key)">Delete</button>\n\n       </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\projects\projects.html"*/,
+            selector: 'page-projects',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\projects\projects.html"*/'\n\n\n\n<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Projects</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button icon-only (click)="signOut()">\n\n        Leave\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addProjects()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="scroll-content">\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor="let proj of projects">\n\n      <ion-item>\n\n          {{proj.projectName}}\n\n          <ion-icon name="md-open" item-end (click)="goToProject(proj.key,proj.projectName)"></ion-icon>\n\n      </ion-item>\n\n      <ion-item-options side="right">\n\n          <button ion-button expandable (click)="edit(proj.key)">Edit</button>\n\n          <button ion-button color="danger" expandable (click)="delete(proj.key)">Delete</button>\n\n       </ion-item-options>\n\n\n\n\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\projects\projects.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], ProjectsPage);
@@ -389,7 +401,7 @@ var snapshotToArray = function (snapshot) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignInPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__projects_projects__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(235);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -418,13 +430,13 @@ var SignInPage = /** @class */ (function () {
         console.log('ionViewDidLoad SignInPage');
     };
     SignInPage.prototype.enterUserName = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__projects_projects__["a" /* ProjectsPage */], {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */], {
             useraname: this.data.username
         });
     };
     SignInPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sign-in',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\sign-in\sign-in.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Signin</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <form (ngSubmit)="enterUserName()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating>Enter user name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.username" name="username" required=""></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\sign-in\sign-in.html"*/,
+            selector: 'page-sign-in',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\sign-in\sign-in.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Signin</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <form (ngSubmit)="enterUserName()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating>Enter user name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.username" name="username" required=""></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\sign-in\sign-in.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], SignInPage);
@@ -497,13 +509,51 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 278:
+/***/ 235:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__projects_projects__ = __webpack_require__(144);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.projectsTab = __WEBPACK_IMPORTED_MODULE_2__projects_projects__["a" /* ProjectsPage */];
+    }
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\home\home.html"*/'<ion-header>\n\n  \n\n</ion-header>\n\n\n\n<ion-content padding class="scroll-content">\n\n<ion-tabs>\n\n  <ion-tab tabIcon="list" [root]=\'projectsTab\' tabTitle="My Projects">Proj</ion-tab>\n\n   <ion-tab tabIcon="md-mail-open" [root]=\'assignments\' tabTitle=\'Requests\'></ion-tab>\n\n</ion-tabs> \n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\pages\home\home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(302);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -511,7 +561,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 301:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -519,10 +569,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_projects_notes_projects_notes__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_add_projects_add_projects__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_sign_in_sign_in__ = __webpack_require__(145);
@@ -602,15 +652,15 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 433:
+/***/ 434:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_sign_in_sign_in__ = __webpack_require__(145);
@@ -649,7 +699,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\pronto\pronto-do\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-22-July-2018\pronto-do\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -658,42 +708,7 @@ var MyApp = /** @class */ (function () {
 
 //# sourceMappingURL=app.component.js.map
 
-/***/ }),
-
-/***/ 434:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl) {
-        this.navCtrl = navCtrl;
-    }
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\pronto\pronto-do\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Ionic Blank\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  The world is your oyster.\n\n  <p>\n\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n\n  </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\pronto\pronto-do\src\pages\home\home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
 /***/ })
 
-},[278]);
+},[279]);
 //# sourceMappingURL=main.js.map
