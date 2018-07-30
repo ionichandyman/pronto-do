@@ -25682,8 +25682,40 @@ page-home .scroll-content {
   overflow-y: hidden;
 }
 
-page-projects .scroll-content {
+page-mytask .logentry {
+  color: gray;
+  font-size: 11px;
+  padding: 2px;
+}
+
+page-mytask .ion-card {
+  background-color: #fcfcd8 !important;
+}
+
+page-mytask .scroll-content {
+  margin: 0;
+  padding: 0;
   overflow-y: scroll;
+}
+
+page-outbox .logentry {
+  color: gray;
+  font-size: 11px;
+  padding: 2px;
+}
+
+page-outbox .ion-card {
+  background-color: #fcfcd8 !important;
+}
+
+page-outbox .scroll-content {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+page-projects .scroll-content {
+  overflow-y: hidden;
 }
 
 page-projects-notes .logentry {

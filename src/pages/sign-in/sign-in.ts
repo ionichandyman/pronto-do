@@ -25,7 +25,7 @@ export class SignInPage {
   }
   enterUserName(){
     this.navCtrl.setRoot(HomePage,{
-      useraname:this.data.username
+      userid:this.data.username
     });
   }
 }

@@ -1,0 +1,16 @@
+page-mytask {
+    .logentry{
+        color :gray;
+        font-size : 11px;
+        padding : 2px;
+    }
+    .ion-card {
+        background-color: #fcfcd8 !important;
+    }
+    .scroll-content {
+       margin : 0;
+       padding : 0;
+       overflow-y:scroll
+    }
+
+}

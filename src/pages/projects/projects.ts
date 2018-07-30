@@ -25,6 +25,8 @@ export class ProjectsPage {
   userId:'';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userId = navParams.get("userid");
+    
     this.ref.on('value',resp=>{
       this.projects = [];
       this.projects = snapshotToArray(resp);
@@ -33,6 +35,7 @@ export class ProjectsPage {
   }
  ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
+  
   }
   addProjects(){
     this.navCtrl.push(AddProjectsPage);
@@ -40,7 +43,7 @@ export class ProjectsPage {
   
   goToProject(key,text){
     var me=this;
-    this.navCtrl.push(ProjectsNotesPage,{projectKey : key,userId : me.userId,projectName : text});
+    this.navCtrl.push(ProjectsNotesPage,{projectKey : key,userid : me.userId,projectName : text});
   }
   delete(selectedItem){
     this.ref.child(selectedItem).remove();

@@ -29,42 +29,58 @@ export class AddNotesPage {
   joinDate:'';
   ref;
   refUserTask;
+  refCreatorTask;
   newTask;
+  userid;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.projectKey = navParams.get("projectKey");
       this.projectName = navParams.get("projectName");
+      this.userid = navParams.get("userid");
       this.ref = firebase.database().ref('projects/' + this.projectKey+'/projectNotes/');
  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddNotesPage');
+    alert(this.userid);
   }
   addProjectNotes(){
     var me=this;
     let newData = this.ref.push();
     this.refUserTask =  firebase.database().ref('user/' + this.taskOwner).child('tasks');
-    
-
+    this.refCreatorTask = firebase.database().ref('user/' + this.userid).child('outbox');
     newData.set({
-      projectNotes :this.projectNotes,
-      messages : this.messages,
+      projectName : me.projectName,
+      projectNotes :me.projectNotes,
+      messages : me.messages,
       type : 'notes',
-      taskOwner :this.taskOwner,
-      taskOwnerId : this.taskOwner,
+      taskOwner :me.taskOwner,
+      taskOwnerId : me.taskOwner,
       joinDate : Date(),
-      createdBy:'SYSTEM',
-      status : 'P'
+       status : 'P',
+       createdBy : me.userid
     });
     this.refUserTask.child(newData.getKey()).set({
-      projectNotes : this.projectNotes,
-      messages : this.messages,
+      projectNotes : me.projectNotes,
+      projectName : me.projectName,
+      messages : me.messages,
       type : 'notes',
-      taskOwner : this.taskOwner,
-      taskOwnerId : this.taskOwner,
+      taskOwner : me.taskOwner,
+      taskOwnerId : me.taskOwner,
       createDate : Date(),
-      status : 'P'
+      status : 'P',
+      createdBy : me.userid
     });
-
-    this.navCtrl.pop();
+    this.refCreatorTask.child(newData.getKey()).set({
+      projectName : me.projectName,
+      projectNotes : me.projectNotes,
+      messages : me.messages,
+      type : 'notes',
+      taskOwner : me.taskOwner,
+      taskOwnerId : me.taskOwner,
+      createDate : Date(),
+      status : 'P',
+      createdBy : me.userid
+    });
+       this.navCtrl.pop();
   }
 }

@@ -12,6 +12,8 @@ import { SignInPage } from '../pages/sign-in/sign-in';
 import { ProjectsPage } from '../pages/projects/projects';
 import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
 import {AddNotesPage} from '../pages/add-notes/add-notes';
+import {OutboxPage} from '../pages/outbox/outbox';
+import { MytaskPage } from '../pages/mytask/mytask';
 
 
 
@@ -24,7 +26,9 @@ import {AddNotesPage} from '../pages/add-notes/add-notes';
     ProjectsPage,
     SignInPage,
     EditProjectsPage,
-    AddNotesPage
+    AddNotesPage,
+    OutboxPage,
+    MytaskPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import {AddNotesPage} from '../pages/add-notes/add-notes';
     SignInPage,
     EditProjectsPage,
     ProjectsNotesPage,
-    AddNotesPage
+    AddNotesPage,
+    OutboxPage,
+    MytaskPage
   ],
   providers: [
     StatusBar,

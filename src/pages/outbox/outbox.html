@@ -1,0 +1,49 @@
+<!--
+  Generated template for the OutboxPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Outbox</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item *ngFor="let proj of projectNotes">
+      <ion-card *ngIf="proj.type!='logentry'" class="ion-card" >
+          <ion-card-header>
+              {{proj.projectName}}
+            </ion-card-header>
+        <ion-card-header>
+          {{proj.projectNotes}}
+        </ion-card-header>
+        <ion-card-content>
+          <b>Details :</b><br>
+          {{proj.messages}} <br>
+          <b>Assigned to</b> : <br>
+          {{proj.taskOwner}}<br>
+          <b>Reported by</b> : <br>
+          {{proj.createdBy}}
+          <br>
+          <b>Status : </b> <br>
+           {{proj.status=='P' ? 'Open' : 'Completed'}}
+        </ion-card-content>
+        <ion-row>
+          <ion-col>
+              <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
+          </ion-col>
+          <ion-col>
+              <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
+              <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-item>
+</ion-list>
+</ion-content>

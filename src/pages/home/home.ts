@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
 
 import { ViewChild }  from '@angular/core'
 import {ProjectsPage} from '../projects/projects';
+import {OutboxPage} from '../outbox/outbox';
+import {MytaskPage} from '../mytask/mytask';
+
 
 @Component({
   selector: 'page-home',
@@ -11,9 +14,14 @@ import {ProjectsPage} from '../projects/projects';
 })
 export class HomePage {
   projectTab;
-  assignedTab;
+  assignedTab = OutboxPage;
   projectsTab = ProjectsPage;
-  constructor(public navCtrl: NavController) {
+  myTaskTab = MytaskPage;
+  userid;
+  tabParams = {userid : ""}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userid = navParams.get("userid");
+    this.tabParams.userid = this.userid;
 
   }
   

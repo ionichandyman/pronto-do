@@ -27,7 +27,7 @@ export class ProjectsNotesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.projectKey = navParams.get("projectKey");
-    this.userId = navParams.get("userId");
+    this.userId = navParams.get("userid");
     this.projectName = navParams.get("projectName");
     this.ref = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/');
     this.refRead = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/').orderByChild('joinDate');
@@ -38,7 +38,7 @@ export class ProjectsNotesPage {
     });
   }
  addTask(){
-  this.navCtrl.push(AddNotesPage,{projectKey:this.projectKey,projectName:this.projectName});
+  this.navCtrl.push(AddNotesPage,{projectKey:this.projectKey,projectName:this.projectName,userid : this.userId});
   }
  addNotes(){
    var me=this;
@@ -47,8 +47,9 @@ export class ProjectsNotesPage {
     projectNotes : me.userId +" has joined ",
     messages : "projectData.messages",
     type : "logentry",
-    loginId : "uncajy",
-    joinDate : Date()
+    loginId : me.userId,
+    joinDate : Date(),
+    createdBy : me.userId
   });
  }
  close(selectedItem){
