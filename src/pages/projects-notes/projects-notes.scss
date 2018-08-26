@@ -6,11 +6,16 @@ page-projects-notes {
         }
         .ion-card {
             background-color: #fcfcd8 !important;
+            width:300px
         }
         .scroll-content {
            margin : 0;
            padding : 0;
            overflow-y:scroll
+        }
+        .button{
+            font-size:12px;
+            
         }
 
 }

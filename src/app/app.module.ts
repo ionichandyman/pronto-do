@@ -7,13 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProjectsNotesPage } from '../pages/projects-notes/projects-notes';
-import { AddProjectsPage } from '../pages/add-projects/add-projects';
+import { AddGroupPage } from '../pages/add-group/add-group';
 import { SignInPage } from '../pages/sign-in/sign-in';
-import { ProjectsPage } from '../pages/projects/projects';
-import {EditProjectsPage} from '../pages/edit-projects/edit-projects';
+import { GroupsPage } from '../pages/groups/groups';
+import { EditGroupPage } from '../pages/edit-group/edit-group';
 import {AddNotesPage} from '../pages/add-notes/add-notes';
 import {OutboxPage} from '../pages/outbox/outbox';
 import { MytaskPage } from '../pages/mytask/mytask';
+import { GroupProvider } from '../providers/group-provider';
 
 
 
@@ -21,11 +22,11 @@ import { MytaskPage } from '../pages/mytask/mytask';
   declarations: [
     MyApp,
     HomePage,
-    AddProjectsPage,
+    AddGroupPage,
     ProjectsNotesPage,
-    ProjectsPage,
+    GroupsPage,
     SignInPage,
-    EditProjectsPage,
+    EditGroupPage,
     AddNotesPage,
     OutboxPage,
     MytaskPage
@@ -38,11 +39,11 @@ import { MytaskPage } from '../pages/mytask/mytask';
   entryComponents: [
     MyApp,
     HomePage,
-    AddProjectsPage,
+    AddGroupPage,
     ProjectsNotesPage,
-    ProjectsPage,
+    GroupsPage,
     SignInPage,
-    EditProjectsPage,
+    EditGroupPage,
     ProjectsNotesPage,
     AddNotesPage,
     OutboxPage,
@@ -51,7 +52,8 @@ import { MytaskPage } from '../pages/mytask/mytask';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GroupProvider
   ]
 })
 export class AppModule {}

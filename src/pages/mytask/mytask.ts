@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { CommonFunctions } from '../../app/helpers/commonfunctions';
 /**
  * Generated class for the MytaskPage page.
  *
@@ -17,14 +18,16 @@ export class MytaskPage {
   userid;
   refUserTask;
   projectNotes;
-  tabParams = {userid : ""}
+  tabParams = {userid : ""};
+  commonFn = new CommonFunctions();
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.userid = navParams.get("userid");
     this.refUserTask =  firebase.database().ref('user/' + this.userid).child('tasks');
     this.tabParams.userid = this.userid;
     this.refUserTask.on('value',resp=>{
       this.projectNotes = [];
-      this.projectNotes = snapshotToArray(resp);
+      this.projectNotes = this.commonFn.snapShotToArray(resp);
     });
     
   }
@@ -34,14 +37,3 @@ export class MytaskPage {
   }
 
 }
-export const snapshotToArray = snapshot => {
-  let returnArr = [];
-
-  snapshot.forEach(childSnapshot => {
-      let item = childSnapshot.val();
-      item.key = childSnapshot.key;
-      returnArr.push(item);
-  });
-
-  return returnArr;
-};

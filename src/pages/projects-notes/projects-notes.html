@@ -6,50 +6,80 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Project Notes</ion-title>
-  </ion-navbar>
-  <ion-navbar>
     <ion-title>{{projectName}}</ion-title>
-    <ion-buttons end>
+    <!--ion-buttons end>
       <button ion-button icon-only (click)="addTask()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons-->
   </ion-navbar>
-  
 </ion-header>
+
 <ion-content padding>
-  <ion-list no-lines>
-      <ion-item *ngFor="let proj of projectTasks">
-        <ion-card *ngIf="proj.type!='logentry'" class="ion-card" >
-          <ion-card-header>
-            {{proj.projectNotes}}
-          </ion-card-header>
-          <ion-card-content>
-            <b>Details :</b><br>
-            {{proj.messages}} <br>
-            <b>Assigned to</b> : <br>
-            {{proj.taskOwner}}<br>
-            <b>Reported by</b> : <br>
-            {{proj.createdBy}}
-            <br>
-            <b>Status : </b> <br>
-             {{proj.status=='P' ? 'Open' : 'Completed'}}
-          </ion-card-content>
-          
-          <ion-row>
-            <ion-col>
-                <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
-            </ion-col>
-            <ion-col>
-                <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
-                <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>
-            </ion-col>
-            
-          </ion-row>
-        </ion-card>
-      </ion-item>
-  </ion-list>
+  <ion-row>
+      <ion-segment [(ngModel)]="options" color="secondary">
+          <ion-segment-button value="Tasks">
+            Tasks
+          </ion-segment-button>
+          <ion-segment-button value="Members">
+            Members
+          </ion-segment-button>
+      </ion-segment>
+     
+  </ion-row>
+  <ion-row [ngSwitch]="options">
+      <ion-list *ngSwitchCase="'Tasks'">
+        <ion-row>
+            <button ion-button (click)="addTask()">Add Tasks</button>
+        </ion-row>
+        <ion-row>
+            <ion-list no-lines>
+                <ion-item *ngFor="let proj of groupNotes">
+                  <ion-card *ngIf="proj.type!='logentry'" class="ion-card" >
+                    <ion-card-header>
+                      {{proj.projectNotes}}
+                    </ion-card-header>
+                    <ion-card-content>
+                      <b>Details :</b><br>
+                      <ion-item text-wrap>
+                        {{proj.messages}} 
+                      </ion-item>
+                      <b>Assigned to</b> : <br>
+                      {{proj.taskOwner}}<br>
+                      <b>Reported by</b> : <br>
+                      {{proj.createdBy}}
+                      <br>
+                      <b>Status : </b> <br>
+                      {{proj.status=='P' ? 'Open' : 'Completed'}}
+                    </ion-card-content>
+                    <ion-row>
+                      <ion-col>
+                          <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
+                      </ion-col>
+                      <ion-col>
+                          <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
+                          <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-item>
+            </ion-list>
+        </ion-row>
+      </ion-list>
+      <ion-list *ngSwitchCase="'Members'">
+        <ion-row>
+            <button ion-button (click)="addMembers()">Add Members</button>
+        </ion-row>
+        <ion-row>
+          <ion-list>
+            <ion-item *ngFor="let member of Members">
+
+            </ion-item>
+          </ion-list>
+        </ion-row>
+      </ion-list>
+  </ion-row>
+ 
 </ion-content>
 
 <!--ion-list>

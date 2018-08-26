@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
 
 import { ViewChild }  from '@angular/core'
-import {ProjectsPage} from '../projects/projects';
+import {GroupsPage} from '../groups/groups';
 import {OutboxPage} from '../outbox/outbox';
 import {MytaskPage} from '../mytask/mytask';
 
@@ -15,7 +15,7 @@ import {MytaskPage} from '../mytask/mytask';
 export class HomePage {
   projectTab;
   assignedTab = OutboxPage;
-  projectsTab = ProjectsPage;
+  projectsTab = GroupsPage;
   myTaskTab = MytaskPage;
   userid;
   tabParams = {userid : ""}
@@ -24,5 +24,4 @@ export class HomePage {
     this.tabParams.userid = this.userid;
 
   }
-  
-}
+ }

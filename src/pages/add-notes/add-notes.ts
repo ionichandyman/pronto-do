@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
-
+import { GroupProvider } from '../../providers/group-provider';
 /**
  * Generated class for the AddNotesPage page.
  *
@@ -33,11 +33,11 @@ export class AddNotesPage {
   newTask;
   userid;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public groupService : GroupProvider) {
       this.projectKey = navParams.get("projectKey");
       this.projectName = navParams.get("projectName");
       this.userid = navParams.get("userid");
-      this.ref = firebase.database().ref('projects/' + this.projectKey+'/projectNotes/');
+      alert('add-notes constructor');
  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddNotesPage');
@@ -45,10 +45,11 @@ export class AddNotesPage {
   }
   addProjectNotes(){
     var me=this;
-    let newData = this.ref.push();
+    let datax;
     this.refUserTask =  firebase.database().ref('user/' + this.taskOwner).child('tasks');
     this.refCreatorTask = firebase.database().ref('user/' + this.userid).child('outbox');
-    newData.set({
+   
+    datax =  {
       projectName : me.projectName,
       projectNotes :me.projectNotes,
       messages : me.messages,
@@ -58,7 +59,9 @@ export class AddNotesPage {
       joinDate : Date(),
        status : 'P',
        createdBy : me.userid
-    });
+    };
+    this.groupService.addGroupNotes(this.projectKey ,datax);
+    /*
     this.refUserTask.child(newData.getKey()).set({
       projectNotes : me.projectNotes,
       projectName : me.projectName,
@@ -81,6 +84,7 @@ export class AddNotesPage {
       status : 'P',
       createdBy : me.userid
     });
+    */
        this.navCtrl.pop();
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ProjectsPage } from '../projects/projects';
+import { GroupsPage } from '../groups/groups';
 import { HomePage } from '../home/home'
 /**
  * Generated class for the SignInPage page.

@@ -3,6 +3,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { ProjectNote } from '../../app/projectnotes';
 import { AddNotesPage } from '../add-notes/add-notes';
+import {CommonFunctions} from '../../app/helpers/commonfunctions';
+import { GroupProvider } from '../../providers/group-provider';
+import {GroupsPage} from '../groups/groups';
+import {OutboxPage} from '../outbox/outbox';
+import {MytaskPage} from '../mytask/mytask';
+import { Subject } from 'rxjs/Subject';
 
 /**
  * Generated class for the ProjectsNotesPage page.
@@ -24,20 +30,39 @@ export class ProjectsNotesPage {
   projectName:'';
   projectTasks;
   refRead;
+  commonFn = new CommonFunctions();
+  assignedTab = OutboxPage;
+  projectsTab = GroupsPage;
+  myTaskTab = MytaskPage;
+  userid;
+  tabParams = {userid : ""}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  notesSubject;
+  groupNotes;
+  options;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public groupService : GroupProvider) {
     this.projectKey = navParams.get("projectKey");
     this.userId = navParams.get("userid");
     this.projectName = navParams.get("projectName");
-    this.ref = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/');
-    this.refRead = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/').orderByChild('joinDate');
-   //this.addNotes();
-    this.refRead.on('value',resp=>{
-      this.projectTasks = snapshotToArray(resp);
-      this.projectTasks.reverse();
+    this.notesSubject = new Subject();
+    this.options = "Tasks";
+    this.notesSubject.subscribe((data)=>{
+      this.groupNotes = data;
+      this.groupNotes.reverse();
+      console.log('groups xxloaded');
     });
+    groupService.loadGroupNotes(this.projectKey,this.notesSubject);
+
+   // this.ref = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/');
+    //this.refRead = firebase.database().ref('projects/' + this.projectKey +'/projectNotes/').orderByChild('joinDate');
+   //this.addNotes();
+   // this.refRead.on('value',resp=>{
+   //   this.projectTasks =this.commonFn.snapShotToArray(resp);
+    //  this.projectTasks.reverse();
+    //});
   }
  addTask(){
+   alert(this.projectKey + " - projectNOTES");
   this.navCtrl.push(AddNotesPage,{projectKey:this.projectKey,projectName:this.projectName,userid : this.userId});
   }
  addNotes(){
@@ -51,6 +76,9 @@ export class ProjectsNotesPage {
     joinDate : Date(),
     createdBy : me.userId
   });
+ }
+ addMembers(){
+
  }
  close(selectedItem){
   
@@ -82,16 +110,4 @@ export class ProjectsNotesPage {
     console.log('ionViewDidLoad ProjectsNotesPage');
   }
 
-}
-export const snapshotToArray = snapshot => {
-  let returnArr = [];
-
-  snapshot.forEach(childSnapshot => {
-      let item = childSnapshot.val();
-      
-      item.key = childSnapshot.key;
-      returnArr.push(item);
-  })
-
-  return returnArr;
 }

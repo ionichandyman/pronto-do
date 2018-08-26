@@ -6,12 +6,11 @@
 -->
 <ion-header>
 
+
   <ion-navbar>
     <ion-title>Outbox</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-list no-lines>
@@ -24,8 +23,10 @@
           {{proj.projectNotes}}
         </ion-card-header>
         <ion-card-content>
-          <b>Details :</b><br>
-          {{proj.messages}} <br>
+            <b>Details :</b><br>
+          <ion-item text-wrap>
+              {{proj.messages}} <br>
+          </ion-item>
           <b>Assigned to</b> : <br>
           {{proj.taskOwner}}<br>
           <b>Reported by</b> : <br>
