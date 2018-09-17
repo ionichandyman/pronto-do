@@ -15,7 +15,7 @@ import {AddNotesPage} from '../pages/add-notes/add-notes';
 import {OutboxPage} from '../pages/outbox/outbox';
 import { MytaskPage } from '../pages/mytask/mytask';
 import { GroupProvider } from '../providers/group-provider';
-
+import { AddMembersPage } from '../pages/add-members/add-members'
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { GroupProvider } from '../providers/group-provider';
     EditGroupPage,
     AddNotesPage,
     OutboxPage,
-    MytaskPage
+    MytaskPage,
+    AddMembersPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { GroupProvider } from '../providers/group-provider';
     ProjectsNotesPage,
     AddNotesPage,
     OutboxPage,
-    MytaskPage
+    MytaskPage,
+    AddMembersPage
   ],
   providers: [
     StatusBar,
