@@ -22,6 +22,6 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.userid = navParams.get("userid");
     this.tabParams.userid = this.userid;
-
+    
   }
  }

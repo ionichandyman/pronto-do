@@ -24,13 +24,14 @@ export class GroupProvider {
   refOutBoxTask;
   refMember;
   groupMember;
+  refKnownGroups;
 
   constructor() {
     console.log('pronto-provider');
 
   }
   loadGroups(userId,givenSubject){
-    this.ref = firebase.database().ref('groups/');
+    this.ref = firebase.database().ref('user/' + userId + '/groups/');
     this.ref.on('value',resp=>{
       //this.groupsRepo.next(this.commonFn.snapShotToArray(resp));
       this.knownGroups =this.commonFn.snapShotToArray(resp);
@@ -58,6 +59,16 @@ export class GroupProvider {
     this.addUsersTasks(data);
     this.logCreatorTask(data);
   }
+  addKnownGroups(data){
+    if(this.refKnownGroups==null){
+      this.refKnownGroups = firebase.database().ref('groups');
+    }
+    let knownGroup = this.refKnownGroups.push();
+    knownGroup.set(data);
+
+  }
+
+
   addUserGroup(userNo,groupNo,gName){
     this.refUserGroup = firebase.database().ref('user/' + userNo +"/").child("groups");
     let userGroupData = this.refUserGroup.push();
@@ -128,12 +139,15 @@ export class GroupProvider {
   deleteItem(selectedItem){
     this.ref.child(selectedItem).remove();
   }
-  addGroup(data){
+  addGroup(data,userId){
     let newData = this.ref.push();
     newData.set({
       groupName : data.groupName
     });
-  }
+   // this.addUserGroup(userId,newData.key,data.groupName);
+   this.addKnownGroups(data);
+
+   }
   editGroup(data){
     this.ref.update({
       "groupName" : data.groupName
@@ -144,4 +158,4 @@ export class GroupProvider {
     })
   }
  
-}
+} 

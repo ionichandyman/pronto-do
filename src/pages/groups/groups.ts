@@ -41,7 +41,7 @@ export class GroupsPage {
     this.groupService.loadGroups(this.userId,this.groupSubject);
   }
   addProjects(){
-    this.navCtrl.push(AddGroupPage);
+    this.navCtrl.push(AddGroupPage,{userId : this.userId});
   }
   goToProject(key,text){
     var me=this;

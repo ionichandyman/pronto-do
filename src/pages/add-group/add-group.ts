@@ -16,15 +16,17 @@ import { GroupProvider } from '../../providers/group-provider';
 export class AddGroupPage {
   data = {groupName:''};
   ref = firebase.database().ref('groups/');
+  userId;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public groupProvider : GroupProvider) {
+    this.userId = navParams.get("userId");
   }
   addProjectData(){
-    this.groupProvider.addGroup(this.data);
+    this.groupProvider.addGroup(this.data,this.userId);
     this.navCtrl.pop();
 }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddGroupPage');
+    console.log('ionViewDidLoad AddGroupPageaaaaaaa');
   }
 
 }
