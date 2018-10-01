@@ -4,10 +4,68 @@ webpackJsonp([9],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGroupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__ = __webpack_require__(41);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the AddProjectsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AddGroupPage = /** @class */ (function () {
+    function AddGroupPage(navCtrl, navParams, groupProvider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.groupProvider = groupProvider;
+        this.data = { groupName: '' };
+        this.ref = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('groups/');
+        this.userId = navParams.get("userId");
+    }
+    AddGroupPage.prototype.addProjectData = function () {
+        this.groupProvider.addGroup(this.data, this.userId);
+        this.navCtrl.pop();
+    };
+    AddGroupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AddGroupPageaaaaaaa');
+    };
+    AddGroupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-add-group',template:/*ion-inline-start:"C:\Jake\pronto-do-sept\pronto-do\src\pages\add-group\add-group.html"*/'<!--\n\n  Generated template for the AddProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Enter Group Name</ion-title>\n\n    <ion-buttons end>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <form (ngSubmit)="addProjectData()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating> Enter Group Name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.groupName" name="groupName" required="*"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-sept\pronto-do\src\pages\add-group\add-group.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__["a" /* GroupProvider */]])
+    ], AddGroupPage);
+    return AddGroupPage;
+}());
+
+//# sourceMappingURL=add-group.js.map
+
+/***/ }),
+
+/***/ 146:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddMembersPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,7 +112,64 @@ var AddMembersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 146:
+/***/ 147:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditGroupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__ = __webpack_require__(41);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the EditProjectsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var EditGroupPage = /** @class */ (function () {
+    function EditGroupPage(navCtrl, navParams, groupProvider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.groupProvider = groupProvider;
+        this.selectedGroup = navParams.get("selectedGroup");
+        alert(this.selectedGroup.groupName);
+        alert(this.selectedGroup.key);
+    }
+    EditGroupPage.prototype.submitChange = function () {
+        var me = this;
+        this.selectedGroup.groupName = this.projectData.groupName;
+        this.groupProvider.editGroup(this.selectedGroup);
+        me.navCtrl.pop();
+    };
+    EditGroupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad EditProjectsPage');
+    };
+    EditGroupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-edit-group',template:/*ion-inline-start:"C:\Jake\pronto-do-sept\pronto-do\src\pages\edit-group\edit-group.html"*/'<!--\n\n  Generated template for the EditProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Edit Group</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n    <form (ngSubmit)="submitChange()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating> Enter Group Name</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectData.groupName" name="groupName" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n  <ion-item>\n\n \n\n  </ion-item>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-sept\pronto-do\src\pages\edit-group\edit-group.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__["a" /* GroupProvider */]])
+    ], EditGroupPage);
+    return EditGroupPage;
+}());
+
+//# sourceMappingURL=edit-group.js.map
+
+/***/ }),
+
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63,7 +178,7 @@ var AddMembersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -153,121 +268,6 @@ var AddNotesPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 147:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditGroupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__ = __webpack_require__(38);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the EditProjectsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var EditGroupPage = /** @class */ (function () {
-    function EditGroupPage(navCtrl, navParams, groupProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.groupProvider = groupProvider;
-        this.selectedGroup = navParams.get("selectedGroup");
-        alert(this.selectedGroup.groupName);
-        alert(this.selectedGroup.key);
-    }
-    EditGroupPage.prototype.submitChange = function () {
-        var me = this;
-        this.selectedGroup.groupName = this.projectData.groupName;
-        this.groupProvider.editGroup(this.selectedGroup);
-        me.navCtrl.pop();
-    };
-    EditGroupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EditProjectsPage');
-    };
-    EditGroupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-edit-group',template:/*ion-inline-start:"C:\Jake\pronto-do-sept\pronto-do\src\pages\edit-group\edit-group.html"*/'<!--\n\n  Generated template for the EditProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Edit Group</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n    <form (ngSubmit)="submitChange()">\n\n        <ion-list>\n\n            <ion-item>\n\n              <ion-label floating> Enter Group Name</ion-label>\n\n              <ion-input type="text" [(ngModel)]="projectData.groupName" name="groupName" required="*"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <button ion-button full round color="secondary" type="submit">Enter</button>\n\n            </ion-item>\n\n          </ion-list>\n\n    </form>\n\n  <ion-item>\n\n \n\n  </ion-item>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-sept\pronto-do\src\pages\edit-group\edit-group.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_group_provider__["a" /* GroupProvider */]])
-    ], EditGroupPage);
-    return EditGroupPage;
-}());
-
-//# sourceMappingURL=edit-group.js.map
-
-/***/ }),
-
-/***/ 148:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGroupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__ = __webpack_require__(38);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the AddProjectsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AddGroupPage = /** @class */ (function () {
-    function AddGroupPage(navCtrl, navParams, groupProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.groupProvider = groupProvider;
-        this.data = { groupName: '' };
-        this.ref = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('groups/');
-        this.userId = navParams.get("userId");
-    }
-    AddGroupPage.prototype.addProjectData = function () {
-        this.groupProvider.addGroup(this.data, this.userId);
-        this.navCtrl.pop();
-    };
-    AddGroupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddGroupPageaaaaaaa');
-    };
-    AddGroupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-group',template:/*ion-inline-start:"C:\Jake\pronto-do-sept\pronto-do\src\pages\add-group\add-group.html"*/'<!--\n\n  Generated template for the AddProjectsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar hideBackButton=false>\n\n    <ion-title>Enter Group Name</ion-title>\n\n    <ion-buttons end>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <form (ngSubmit)="addProjectData()">\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label floating> Enter Group Name</ion-label>\n\n        <ion-input type="text" [(ngModel)]="data.groupName" name="groupName" required="*"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <button ion-button full round color="secondary" type="submit">Enter</button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Jake\pronto-do-sept\pronto-do\src\pages\add-group\add-group.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_group_provider__["a" /* GroupProvider */]])
-    ], AddGroupPage);
-    return AddGroupPage;
-}());
-
-//# sourceMappingURL=add-group.js.map
-
-/***/ }),
-
 /***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -275,15 +275,15 @@ var AddGroupPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectsNotesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_notes_add_notes__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_notes_add_notes__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_helpers_commonfunctions__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_group_provider__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_group_provider__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__groups_groups__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__outbox_outbox__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mytask_mytask__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Subject__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__add_members_add_members__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__add_members_add_members__ = __webpack_require__(146);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -461,15 +461,15 @@ webpackEmptyAsyncContext.id = 159;
 
 var map = {
 	"../pages/add-group/add-group.module": [
-		443,
+		440,
 		8
 	],
 	"../pages/add-members/add-members.module": [
-		440,
+		441,
 		7
 	],
 	"../pages/add-notes/add-notes.module": [
-		441,
+		443,
 		6
 	],
 	"../pages/edit-group/edit-group.module": [
@@ -481,15 +481,15 @@ var map = {
 		4
 	],
 	"../pages/mytask/mytask.module": [
-		445,
+		446,
 		3
 	],
 	"../pages/outbox/outbox.module": [
-		447,
+		445,
 		2
 	],
 	"../pages/projects-notes/projects-notes.module": [
-		446,
+		447,
 		1
 	],
 	"../pages/sign-in/sign-in.module": [
@@ -588,15 +588,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_projects_notes_projects_notes__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_add_group_add_group__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_add_group_add_group__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_sign_in_sign_in__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_groups_groups__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_edit_group_edit_group__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_add_notes_add_notes__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_add_notes_add_notes__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_outbox_outbox__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_mytask_mytask__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_group_provider__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_add_members_add_members__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_group_provider__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_add_members_add_members__ = __webpack_require__(146);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -642,14 +642,14 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/add-members/add-members.module#AddMembersPageModule', name: 'AddMembersPage', segment: 'add-members', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-notes/add-notes.module#AddNotesPageModule', name: 'AddNotesPage', segment: 'add-notes', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-group/edit-group.module#EditGroupPageModule', name: 'EditGroupPage', segment: 'edit-group', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-group/add-group.module#AddGroupPageModule', name: 'AddGroupPage', segment: 'add-group', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-members/add-members.module#AddMembersPageModule', name: 'AddMembersPage', segment: 'add-members', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-group/edit-group.module#EditGroupPageModule', name: 'EditGroupPage', segment: 'edit-group', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-notes/add-notes.module#AddNotesPageModule', name: 'AddNotesPage', segment: 'add-notes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/groups/groups.module#GroupsPageModule', name: 'GroupsPage', segment: 'groups', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/outbox/outbox.module#OutboxPageModule', name: 'OutboxPage', segment: 'outbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mytask/mytask.module#MytaskPageModule', name: 'MytaskPage', segment: 'mytask', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/projects-notes/projects-notes.module#ProjectsNotesPageModule', name: 'ProjectsNotesPage', segment: 'projects-notes', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/outbox/outbox.module#OutboxPageModule', name: 'OutboxPage', segment: 'outbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-in/sign-in.module#SignInPageModule', name: 'SignInPage', segment: 'sign-in', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -684,7 +684,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 38:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -749,7 +749,7 @@ var GroupProvider = /** @class */ (function () {
     };
     GroupProvider.prototype.addKnownGroups = function (data) {
         if (this.refKnownGroups == null) {
-            this.refKnownGroups = __WEBPACK_IMPORTED_MODULE_1_firebase__["database"]().ref('groups');
+            this.refKnownGroups = __WEBPACK_IMPORTED_MODULE_1_firebase__["database"]().ref('knowngroups');
         }
         var knownGroup = this.refKnownGroups.push();
         knownGroup.set(data);
@@ -823,7 +823,7 @@ var GroupProvider = /** @class */ (function () {
         newData.set({
             groupName: data.groupName
         });
-        // this.addUserGroup(userId,newData.key,data.groupName);
+        //this.addUserGroup(userId,newData.key,data.groupName);
         this.addKnownGroups(data);
     };
     GroupProvider.prototype.editGroup = function (data) {
@@ -936,9 +936,9 @@ var CommonFunctions = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__projects_notes_projects_notes__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_group_add_group__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_group_add_group__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_group_edit_group__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_group_provider__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_group_provider__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

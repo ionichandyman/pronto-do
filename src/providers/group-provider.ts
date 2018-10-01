@@ -61,14 +61,12 @@ export class GroupProvider {
   }
   addKnownGroups(data){
     if(this.refKnownGroups==null){
-      this.refKnownGroups = firebase.database().ref('groups');
+      this.refKnownGroups = firebase.database().ref('knowngroups');
     }
     let knownGroup = this.refKnownGroups.push();
     knownGroup.set(data);
 
   }
-
-
   addUserGroup(userNo,groupNo,gName){
     this.refUserGroup = firebase.database().ref('user/' + userNo +"/").child("groups");
     let userGroupData = this.refUserGroup.push();
@@ -144,7 +142,7 @@ export class GroupProvider {
     newData.set({
       groupName : data.groupName
     });
-   // this.addUserGroup(userId,newData.key,data.groupName);
+   //this.addUserGroup(userId,newData.key,data.groupName);
    this.addKnownGroups(data);
 
    }
