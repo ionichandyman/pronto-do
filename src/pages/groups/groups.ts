@@ -23,7 +23,8 @@ export class GroupsPage {
   groupSubject;
   userId:'';
   localGroups;
-  
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public groupService : GroupProvider) {
     this.userId = navParams.get("userid");
     this.groupSubject = new Subject();
