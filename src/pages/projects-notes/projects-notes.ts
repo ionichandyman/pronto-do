@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import * as firebase from 'firebase';
-import { ProjectNote } from '../../app/projectnotes';
 import { AddNotesPage } from '../add-notes/add-notes';
 import {CommonFunctions} from '../../app/helpers/commonfunctions';
 import { GroupProvider } from '../../providers/group-provider';
@@ -56,10 +54,10 @@ export class ProjectsNotesPage {
       alert('loaded notes')
       this.groupNotes = data;
       this.groupNotes.reverse();
-      console.log('groups xxloaded');
+    
     });
     this.membersSubject.subscribe((data)=>{
-      alert('loaded subject')
+   
       this.membersList = data;
       console.log('members loaded');
     });
@@ -102,6 +100,8 @@ export class ProjectsNotesPage {
  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsNotesPage');
+    alert('loaded');
+    
   }
 
 }

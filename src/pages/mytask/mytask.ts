@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import * as firebase from 'firebase';
 import { CommonFunctions } from '../../app/helpers/commonfunctions';
+import { GroupProvider } from '../../providers/group-provider';
+
+import { Subject } from 'rxjs/Subject';
 /**
  * Generated class for the MytaskPage page.
  *
@@ -16,22 +18,46 @@ import { CommonFunctions } from '../../app/helpers/commonfunctions';
 })
 export class MytaskPage {
   userid;
-  refUserTask;
-  projectNotes;
+  userTasks;
+  userTaskSubject;
+
   tabParams = {userid : ""};
   commonFn = new CommonFunctions();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public groupProvider : GroupProvider) {
     this.userid = navParams.get("userid");
-    this.refUserTask =  firebase.database().ref('user/' + this.userid).child('tasks');
-    this.tabParams.userid = this.userid;
-    this.refUserTask.on('value',resp=>{
-      this.projectNotes = [];
-      this.projectNotes = this.commonFn.snapShotToArray(resp);
-    });
-    
-  }
+    this.userTaskSubject = new Subject();
+    this.userTaskSubject.subscribe((data)=>{
+  
+      this.userTasks = data
+    })
+    groupProvider.loadUserTask(this.userid,this.userTaskSubject);
 
+  }
+  delete(key){
+  
+  }
+  rejectTask(selectedItem){
+    var updatedItem = this.userTasks.filter(x=>x.key == selectedItem);
+   
+    if(updatedItem!=null){
+      if(updatedItem.length >0){
+        updatedItem[0].status = 'R';
+        this.groupProvider.updateUserTask(updatedItem[0]);
+      }
+    }
+  }
+  completeTask(selectedItem)
+  {
+    var updatedItem = this.userTasks.filter(x=>x.key == selectedItem);
+   
+    if(updatedItem!=null){
+      if(updatedItem.length >0){
+        updatedItem[0].status = 'C';
+        this.groupProvider.updateUserTask(updatedItem[0]);
+      }
+    }
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MytaskPage');
   }

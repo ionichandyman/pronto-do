@@ -50,7 +50,11 @@
                       {{proj.createdBy}}
                       <br>
                       <b>Status : </b> <br>
-                      {{proj.status=='P' ? 'Open' : 'Completed'}}
+                      
+                      <span *ngIf="proj.status=='R'">REJECTED</span>
+                      <span *ngIf="proj.status=='P'">OPEN</span>
+                      <span *ngIf="proj.status=='C'">COMPLETE</span>
+                     
                     </ion-card-content>
                     <ion-row>
                       <ion-col>

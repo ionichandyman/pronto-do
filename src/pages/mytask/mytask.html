@@ -15,7 +15,7 @@
 
 <ion-content padding>
     <ion-list no-lines>
-        <ion-item *ngFor="let proj of projectNotes">
+        <ion-item *ngFor="let proj of userTasks">
           <ion-card *ngIf="proj.type!='logentry'" class="ion-card" >
               <ion-card-header>
                   {{proj.projectName}}
@@ -28,22 +28,24 @@
               <ion-item text-wrap>
                 {{proj.messages}} <br>
              </ion-item>
-              
               <b>Assigned to</b> : <br>
               {{proj.taskOwner}}<br>
               <b>Reported by</b> : <br>
               {{proj.createdBy}}
               <br>
               <b>Status : </b> <br>
-               {{proj.status=='P' ? 'Open' : 'Completed'}}
+              <span *ngIf="proj.status=='R'">REJECTED</span>
+              <span *ngIf="proj.status=='P'">OPEN</span>
+              <span *ngIf="proj.status=='C'">COMPLETE</span>
+             
             </ion-card-content>
             <ion-row>
               <ion-col>
-                  <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
+                  <button ion-button color="danger" (click)="rejectTask(proj.key)" small>REJECT</button>
               </ion-col>
               <ion-col>
                   <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
-                  <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="close(proj.key)" small>Complete</button>
+                  <button *ngIf="proj.status=='P'" ion-button color="secondary" (click)="completeTask(proj.key)" small>Complete</button>
               </ion-col>
             </ion-row>
           </ion-card>

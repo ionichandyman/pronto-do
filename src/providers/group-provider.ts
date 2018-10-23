@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import * as firebase from 'firebase';
 import {CommonFunctions} from '../app/helpers/commonfunctions';
 import { IfStmt } from '@angular/compiler';
@@ -26,9 +26,34 @@ export class GroupProvider {
   groupMember;
   refKnownGroups;
   current
+
+  userTasks;
   constructor() {
     console.log('pronto-provider');
 
+  }
+  loadUserTask(userId,givenSubject)
+  {
+    this.refUserTask = firebase.database().ref('user/' + userId + '/tasks/');
+   this.refUserTask.on('value',resp=>{
+      //this.groupsRepo.next(this.commonFn.snapShotToArray(resp));
+      this.userTasks = this.commonFn.snapShotToArray(resp);
+      alert(this.userTasks);
+      givenSubject.next(this.userTasks);//inform subject that task is done.
+    });
+
+  }
+  updateUserTask(taskItem){
+    if(this.refUserTask!=null){
+      this.refUserTask.child(taskItem.key).set(taskItem);
+    }
+    if(this.refNotes!=null){
+      this.refNotes.child(taskItem.key).set(taskItem);
+    }
+    this.refOutBoxTask = firebase.database().ref('user/'+taskItem.createdBy+'/outbox').child(taskItem.key);
+    this.refOutBoxTask.set(taskItem);
+
+  
   }
   loadGroups(userId,givenSubject){
     this.ref = firebase.database().ref('user/' + userId + '/groups/');
@@ -50,14 +75,15 @@ export class GroupProvider {
     }else{
       giventSubject.next(this.groupNotes);
     }
-   
   }
   addGroupNotes(key,data){
     this.refNotes = firebase.database().ref('groups/' + key).child('tasks');
     let noteData = this.refNotes.push();
     noteData.set(data);
-    this.addUsersTasks(data);
-    this.logCreatorTask(data);
+    data.key = noteData.key;
+
+    this.addUsersTasks(noteData.key,data);
+    this.logCreatorTask(noteData.key,data);
   }
   addKnownGroups(data){
     if(this.refKnownGroups==null){
@@ -74,24 +100,10 @@ export class GroupProvider {
       groupName : gName  
    };
      this.refUserGroup.set(userGroupData);
-
-    
-
-  }
-  logCreatorTask(data){
-    this.refOutBoxTask = firebase.database().ref('user/'+data.createdBy+'/').child('outbox');
-    let outboxData = this.refOutBoxTask.push();
-    outboxData.set({
-      projectNotes : data.projectNotes,
-      projectName : data.projectName,
-      messages : data.messages,
-      type : 'notes',
-      taskOwner : data.taskOwner,
-      taskOwnerId : data.taskOwner,
-      createDate : Date(),
-      status : 'P',
-      createdBy : data.createdBy
-    });
+ }
+  logCreatorTask(key,data){
+    this.refOutBoxTask = firebase.database().ref('user/'+data.createdBy+'/outbox').child(key);
+    this.refOutBoxTask.set(data);
 
   }
    addMembers(data){
@@ -116,24 +128,15 @@ export class GroupProvider {
 
     }
   }
-  addUsersTasks(data){
-    this.refUserTask =  firebase.database().ref('user/' + data.taskOwner).child('tasks');
-    let refUserTaskData = this.refUserTask.push();
+  addUsersTasks(key,data){
+    this.refUserTask =  firebase.database().ref('user/' + data.taskOwner+'/tasks').child(key);
+    this.refUserTask.set(data);
 
-    refUserTaskData.set({
-      projectNotes : data.projectNotes,
-      projectName : data.projectName,
-      messages : data.messages,
-      type : 'notes',
-      taskOwner : data.taskOwner,
-      taskOwnerId : data.taskOwner,
-      createDate : Date(),
-      status : 'P',
-      createdBy : data.createdBy
-    });
+    this.refUserTask.set(data);
   }
   deleteItem(selectedItem){
-    this.ref.child(selectedItem).remove();
+     this.ref.child(selectedItem).remove();
+    
   }
   addGroup(data,userId){
     let newData = this.ref.push();
