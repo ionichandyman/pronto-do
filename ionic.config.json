@@ -1,6 +1,5 @@
 {
   "name": "pronto-do",
   "integrations": {},
-  "type": "ionic-angular",
-  "app_id": ""
+  "type": "ionic-angular"
 }
