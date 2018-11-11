@@ -94,8 +94,11 @@ export class ProjectsNotesPage {
     alert("Unable to update")
   })
  }
- delete(selectedItem){
-  this.ref.child(selectedItem).remove();
+ delete(selectedItem,projectKey){
+  //this.ref.child(selectedItem).remove();
+  alert(projectKey);
+  alert(selectedItem.key);
+  this.groupService.deleteItem(selectedItem,projectKey)
 
  }
   ionViewDidLoad() {

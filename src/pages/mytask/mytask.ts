@@ -35,7 +35,14 @@ export class MytaskPage {
 
   }
   delete(key){
-  
+    var updatedItem = this.userTasks.filter(x=>x.key == key);
+    if(updatedItem!=null){
+      if(updatedItem.length >0){
+        updatedItem[0].status = 'D';
+       // this.groupProvider.deleteItem(updatedItem[0]);
+      }
+    }
+
   }
   rejectTask(selectedItem){
     var updatedItem = this.userTasks.filter(x=>x.key == selectedItem);

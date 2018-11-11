@@ -134,8 +134,16 @@ export class GroupProvider {
 
     this.refUserTask.set(data);
   }
-  deleteItem(selectedItem){
-     this.ref.child(selectedItem).remove();
+  deleteItem(data,pk){
+    // this.ref.child(selectedItem).remove();
+    this.refUserTask = firebase.database().ref('user/' + data.taskOwner+'/tasks').child(data.key);
+    this.refNotes = firebase.database().ref('groups/' + pk).child('tasks').child(data.key);
+    this.refOutBoxTask = firebase.database().ref('user/'+data.createdBy+'/outbox').child(data.key);
+    this.refUserTask.set(null);
+    this.refNotes.set(null);
+    this.refOutBoxTask.set(null);
+
+    
     
   }
   addGroup(data,userId){

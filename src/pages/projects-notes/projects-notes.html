@@ -58,7 +58,7 @@
                     </ion-card-content>
                     <ion-row>
                       <ion-col>
-                          <button ion-button color="danger" (click)="delete(proj.key)" small>Delete</button>
+                          <button ion-button color="danger" (click)="delete(proj,projectKey)" small>Delete</button>
                       </ion-col>
                       <ion-col>
                           <button *ngIf="proj.status!='P'"  ion-button color="default" (click)="reOpen(proj.key)" small>Re-Open</button>
